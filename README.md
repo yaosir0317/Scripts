@@ -7,4 +7,4 @@
 ***这个是粗体加斜体***
 [点击前往谷歌搜索](https://www.google.com.hk/)
 
-<div align=center><img width="150" height="150" src="https://i.loli.net/2018/09/05/5b8f8194dbbc1.jpg"/></div>
+<div align=center><img width="800" height="600" src="https://i.loli.net/2018/09/05/5b8f8194dbbc1.jpg"/></div>
