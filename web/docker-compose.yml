@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+      image: postgres
+  web:
+      build: ./invoice
+      image: invoice:1.1
+      container_name: invoice_web
+      command: /bin/sh -c "cd /code && if [ ! -d "excel" ]; then mkdir "excel"; fi && python manage.py makemigrations && python manage.py migrate && gunicorn invoice.wsgi:application -c gun_yao.py"
+      volumes:
+        - ./invoice:/code
+      ports:
+        - "8000:8000"
+      depends_on:
+        - db
+  nginx:
+    build: ./nginx
+    ports:
+    - "80:80"
+    volumes:
+    - ./invoice/static:/usr/share/nginx/html/static:ro
+    links:
+    - web
+    depends_on:
+    - web
+    restart: always
