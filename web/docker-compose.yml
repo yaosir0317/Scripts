@@ -21,6 +21,8 @@ services:
       - "80:80"
     volumes:
       - ./invoice/static:/opt/nginx/static:ro
+      - ./invoice/templates/html:/opt/nginx/html:ro
+      - ./invoice/excel:/opt/nginx/excel:ro
       - ./nginx/logs:/etc/nginx/logs
     links:
       - web

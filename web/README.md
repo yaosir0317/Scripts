@@ -1,1 +1,5 @@
-docker-compose部署django+nginx项目
+# start:
+
+- cd  web
+- docker-compose build
+- docker-compose up
