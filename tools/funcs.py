@@ -84,18 +84,16 @@ def cal_read_time(file_path, date):
 
 def get_column_name(column):
     """
-    :param column: excel中列的偏移量
+    :param column: excel中列的偏移量从1开始
     :return: 对应列的字母表示
     """
-    prefix = 0
-    if column > 90:
-        prefix = prefix + (column - 65) // 26
-        column = column - 26*prefix
-    if prefix:
-        pre = chr(64 + prefix)
-    else:
-        pre = ""
-    return "{0}{1}".format(pre, chr(column))
+    col_str = ''
+    column = int(column)
+    while column > 0:
+        a, b = divmod(column - 1, 26)
+        col_str = chr(b + 65) + col_str
+        column = a
+    return col_str
 
 
 def runTime(func):
