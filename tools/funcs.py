@@ -4,6 +4,7 @@ import sys
 import time
 import json
 import re
+import decimal
 # import MySQLdb
 import pymysql
 import smtplib
@@ -278,3 +279,14 @@ def get_startDate_by_endDate(end_date, recent_day_cnt=240) -> str:
     else:
         start_date = None
     return start_dat
+
+
+
+class EncoderYao(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, decimal.Decimal):
+            return str(obj)
+        elif isinstance(obj, datetime):
+            return str(obj)
+        super(self, EncoderYao).default(obj)
+
