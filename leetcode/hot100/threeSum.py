@@ -33,6 +33,4 @@ class Solution:
 
 
 if __name__ == '__main__':
-    obj = Solution()
-    print(obj.threeSum([-1,0,1,2,-1,-4]))
-    # print(obj.exists_two_num(-1, [-1,0,1,2,-1,-4], 0))
+    ...

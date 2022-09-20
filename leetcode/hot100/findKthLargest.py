@@ -1,31 +1,8 @@
-from typing import Optional, List
-import random
-
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-    @property
-    def get_attr(self):
-        return ", ".join(f"{k}: {v}" for k, v in self.__dict__.items() if k != "cursor")
-
-    def __str__(self):
-        return "{" + self.get_attr + "}"
-
-
-def new_list_node(l_data: list):
-    ret = None
-    cursor = None
-    for i in l_data:
-        if cursor is None:
-            ret = ListNode(i)
-            cursor = ret
-        else:
-            cursor.next = ListNode(i)
-            cursor = cursor.next
-    return ret
+"""
+给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素。
+https://leetcode.cn/problems/kth-largest-element-in-an-array/
+"""
+from leetcode.basetype import *
 
 
 class HeapM(object):
@@ -62,22 +39,12 @@ class HeapM(object):
     def swap(self, left, right):  # 交换数组中的两个元素
         self._elements[left], self._elements[right] = self._elements[right], self._elements[left]
 
-    def add(self, value):
-        self._elements.append(value)  # 放到末尾
-        self._siftup(self.heap_len - 1)  # siftup将当前索引值维护到堆的位置
-
     def extract(self):
-        if self.heap_len <= 0:
-            raise Exception('empty')
-        value = self._elements[0]  # 记录堆顶值
         self._elements[0] = self._elements.pop()  # 末尾移到堆顶
         self._siftdown(0)  # 从上到下维护堆
-        return value
 
-    def replace_top(self, val: int):
-        if val < self._elements[0]:
-            self._elements[0] = val  # 替换堆顶
-            self._siftdown(0)  # 从上到下维护堆
+    def top_value(self):
+        return self._elements[0]
 
     def _siftup(self, index):
         if index is not None and index > 0:
@@ -101,18 +68,7 @@ class HeapM(object):
             self.swap(new_index, index)
             self._siftdown(new_index)
 
-    def heapify(self, l: list):
-        ...
 
-
-if __name__ == '__main__':
-    ll = new_list_node(list(range(10)))
-    print(ll)
-    new_cursor = None
-    cursor = ll
-    while cursor is not None:
-        next = cursor.next
-        cursor.next = new_cursor
-        new_cursor = cursor
-        cursor = next
-    print(new_cursor)
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        h = HeapM(nums)

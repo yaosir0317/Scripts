@@ -6,6 +6,7 @@ from leetcode.basetype import ListNode, new_list_node
 """
 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。
 请你将两个数相加，并以相同形式返回一个表示和的链表。
+https://leetcode.cn/problems/add-two-numbers/
 """
 
 
@@ -51,4 +52,4 @@ if __name__ == '__main__':
 
     l111 = new_list_node([9,9,9,9,9,9,9])
     l222 = new_list_node([9,9,9,9])
-    obj.addTwoNumbers(l111, l222)
+    print(obj.addTwoNumbers(l111, l222))
