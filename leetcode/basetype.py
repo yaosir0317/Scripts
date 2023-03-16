@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Set
 import random
 
 
@@ -91,7 +91,7 @@ class HeapM(object):
         right = self.get_right_index(index)  # 右子树索引
         new_index = index  # 用一个新索引，后面观察需不需要换
         if right is not None and right < self.heap_len - 1:  # 有左右子树的情况
-            # 当前比左右都大，不用操作
+            # 当前比左右都大
             if not (self._elements[left] <= self._elements[index] and self._elements[right] <= self._elements[index]):
                 new_index = left if self._elements[left] >= self._elements[right] else right  # 取大值索引
         elif left is not None and left < self.heap_len - 1:  # 只有左子树
@@ -105,14 +105,28 @@ class HeapM(object):
         ...
 
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 if __name__ == '__main__':
-    ll = new_list_node(list(range(10)))
-    print(ll)
-    new_cursor = None
-    cursor = ll
-    while cursor is not None:
-        next = cursor.next
-        cursor.next = new_cursor
-        new_cursor = cursor
-        cursor = next
-    print(new_cursor)
+    class Solution:
+        def isIdealPermutation(self, nums: List[int]) -> bool:
+            glob = part = 0
+            for i, v in enumerate(nums):
+                if i + 1 <= len(nums) - 1 and nums[i+1] < v:
+                    part += 1
+                min_v = min(nums[i:])
+                if v > min_v:
+                    glob += v - min_v
+            return glob == part
+
+
+    obj = Solution()
+    import random
+    l = list(range(1000))
+    random.shuffle(l)
+    print(obj.isIdealPermutation(l))

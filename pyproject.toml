@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "scripts"
+version = "0.1.0"
+description = ""
+authors = ["yaojiaqi <yaosir0317@qq.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+uvicorn = "^0.19.0"
+fastapi = "^0.86.0"
+fastapi-pagination = "^0.10.0"
+
+
+[[tool.poetry.source]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+default = true
+secondary = false
+
+
+[tool.poetry.group.dev.dependencies]
+requests = "^2.28.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
